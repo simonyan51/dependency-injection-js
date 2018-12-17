@@ -20,7 +20,7 @@ class UserService {
             
             this.dispatch(getUsersPending());
             
-            const { results } = await this.api.getUsers();
+            const { results } = await this.api.getUsers('results=20');
             
             this.dispatch(getUsersDone(results));
             

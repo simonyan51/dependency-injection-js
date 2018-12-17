@@ -1,0 +1,14 @@
+.user {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.user h1 {
+    font-size: 18px;
+}
+
+.user img {
+    width: auto;
+    max-width: 100%;
+}

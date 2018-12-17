@@ -5,8 +5,8 @@ class API {
     constructor(apiUrl) {
         this.apiUrl = apiUrl;
     }
-    getUsers() {
-        return fetch(`${this.apiUrl}?results=50`).then(item => item.json());
+    getUsers(queryParams) {
+        return fetch(`${this.apiUrl}?${queryParams}`).then(item => item.json());
     }
 }
 

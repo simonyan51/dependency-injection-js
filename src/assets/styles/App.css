@@ -1,0 +1,9 @@
+.users-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.users-container .user-item {
+    margin: 10px;
+}

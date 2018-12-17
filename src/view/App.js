@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Inject } from '../core/utils/decorators';
+import '../assets/styles/App.css';
 
 @Inject('UserService', 'Loader', 'User')
 class App extends Component {
@@ -25,7 +26,9 @@ class App extends Component {
                     <Loader asyncState={usersState}>
                         {
                             users => users && users.map((item, index) => (
-                                <User key={`${item.id.phone}-${index}`} user={item} />
+                                <div className="user-item">
+                                    <User key={`${item.id.phone}-${index}`} user={item} />
+                                </div>
                             ))
                         }
                     </Loader>
