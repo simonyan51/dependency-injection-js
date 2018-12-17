@@ -80,8 +80,4 @@ class Injector {
 
 const injector = new Injector();
 
-export {
-  Injector,
-};
-
 export default injector;

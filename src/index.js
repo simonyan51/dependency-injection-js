@@ -1,18 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import injector from './core/injector';
-import Foo from './foo';
-import A from './a';
-import { Inject } from './core/utils/decorators';
+import App from './view/App';
+import injectionConfig from './injection-config';
 
-injector.registerInjection('Foo', Foo);
-injector.registerInjection('A', A, true);
-injector.registerInjection('Z', ['Truwer']);
+injectionConfig(injector);
 
-@Inject('Foo', 'Foo', 'A', 'A', 'Z')
-class Bob {
-    constructor(a, b, c, d, z) {
-        console.log(z)
-    
-    }
-}
-
-const a = new Bob();
+ReactDOM.render(<App name="Johnny" />, document.getElementById('root'));
