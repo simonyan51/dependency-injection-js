@@ -1,5 +1,7 @@
 const provider$ = Symbol('provider');
 const singletons$ = Symbol('singletons');
+const createInjection$ = Symbol('createInjection');
+const getInjectionValue$ = Symbol('getInjectionValue');
 
 class Injector {
   constructor() {
@@ -14,7 +16,7 @@ class Injector {
     };
   }
 
-  createInjection(injectionConfig, token) {
+  [createInjection$](injectionConfig, token) {
     const {
       isTransient,
       value,
@@ -24,21 +26,17 @@ class Injector {
       
     if (isTransient) {
           
-      injection = this.getInjectionValue(value);
+      injection = this[getInjectionValue$](value);
       
     } else {
         
-      const instance = this[singletons$][token];
+      injection = this[singletons$][token];
         
-      if (!instance) {
+      if (!injection) {
           
-        injection = this.getInjectionValue(value);
+        injection = this[getInjectionValue$](value);
           
         this[singletons$][token] = injection
-        
-      } else { 
-        
-        injection = this[singletons$][token];
         
       }
       
@@ -47,7 +45,7 @@ class Injector {
     return injection;
   }
 
-  getInjectionValue(value) {
+  [getInjectionValue$](value) {
     if (typeof value === 'function') {
       return new value();
     }
@@ -64,7 +62,7 @@ class Injector {
     
       if (injectionConfig) {
         
-        const injection = this.createInjection(injectionConfig, token);
+        const injection = this[createInjection$](injectionConfig, token);
         
         newInjectors.push(injection);
       
@@ -81,5 +79,9 @@ class Injector {
 }
 
 const injector = new Injector();
+
+export {
+  Injector,
+};
 
 export default injector;
