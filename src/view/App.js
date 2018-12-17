@@ -1,41 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Inject } from '../core/utils/decorators';
 
-@Inject('UserService')
+@Inject('UserService', 'Loader', 'User')
 class App extends Component {
     
-    constructor(userService, props) {
+    constructor(userService, Loader, User, props) {
         super(props);
-        this.state = {
-            users: [],
-        };
         this.userService = userService;
+        this.Loader = Loader;
+        this.User = User;
     }
     
     render() {
+        const { name, usersState } = this.props;
         const {
-            users,
-        } = this.state;
-        const {
-            name,
-        } = this.props;
+            Loader,
+            User,
+        } = this;
         return (
             <div>
                 <h1>{name}</h1>
-                <ul>
-                    {
-                        users.map(item => <li key={item.name}>{item.name}</li>)
-                    }
-                </ul>
+                <div className="users-container">
+                    <Loader asyncState={usersState}>
+                        {
+                            users => users && users.map((item, index) => (
+                                <User key={`${item.id.phone}-${index}`} user={item} />
+                            ))
+                        }
+                    </Loader>
+                </div>
             </div>
         );
     }
 
     componentDidMount() {
-        this.setState({
-            users: this.userService.getUsers(),
-        })
+        this.userService.getUsers();
     }
 }
 
-export default App;
+export default connect(state => ({
+    usersState: state.users,
+}))(App);

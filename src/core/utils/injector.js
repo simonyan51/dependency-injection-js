@@ -9,10 +9,11 @@ class Injector {
     this[singletons$] = {};
   }
 
-  registerInjection(token, value, isTransient) {
+  registerInjection(token, value, isTransient, isFunc) {
     this[provider$][token] = {
         isTransient,
         value,
+        isFunc,
     };
   }
 
@@ -20,13 +21,14 @@ class Injector {
     const {
       isTransient,
       value,
+      isFunc,
     } = injectionConfig;
       
     let injection;
       
     if (isTransient) {
           
-      injection = this[getInjectionValue$](value);
+      injection = this[getInjectionValue$](value, isFunc);
       
     } else {
         
@@ -34,7 +36,7 @@ class Injector {
         
       if (!injection) {
           
-        injection = this[getInjectionValue$](value);
+        injection = this[getInjectionValue$](value, isFunc);
           
         this[singletons$][token] = injection
         
@@ -45,8 +47,8 @@ class Injector {
     return injection;
   }
 
-  [getInjectionValue$](value) {
-    if (typeof value === 'function') {
+  [getInjectionValue$](value, isFunc) {
+    if (typeof value === 'function' && !isFunc) {
       return new value();
     }
 
@@ -54,7 +56,6 @@ class Injector {
   }
 
   resolve(injectors, func) {
-    
     const newInjectors = [];
     injectors.forEach(token => {
   

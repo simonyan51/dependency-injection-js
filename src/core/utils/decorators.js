@@ -1,4 +1,4 @@
-import Injector from '../injector';
+import Injector from './injector';
 
 const Injectable = (isTransient) => target => Injector.registerInjection(target.name, target, isTransient);
 const Inject = (...args) => target => (...constructorParams) => {
