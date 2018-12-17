@@ -10,14 +10,16 @@ const User = ({
             email,
         },
         picture: {
-            medium,
+            large,
         }
     },
 }) => (
     <div className="user">
-        <h1>{`${first} ${last}`}</h1>
-        <h3>{email}</h3>
-        <img src={medium} />
+        <img src={large} alt="Avatar" className="user-img" />
+        <div className="user-card-container">
+            <h4><b>{`${first} ${last}`}</b></h4> 
+            <p>{gender}</p> 
+        </div>
     </div>
 );
 

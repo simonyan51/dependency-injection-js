@@ -6,4 +6,5 @@
 
 .users-container .user-item {
     margin: 10px;
+    flex-basis: 10%;
 }
