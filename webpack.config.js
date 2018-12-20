@@ -1,8 +1,7 @@
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+    target: 'node',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -17,15 +16,6 @@ module.exports = {
                 loader: 'babel-loader'
             }
           },
-          {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"]
-          },
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'src/assets/index.html'
-        }),
-    ],
 };
