@@ -1,8 +1,7 @@
-import { createRoute } from "./helpers/route";
-import UserController from "./controllers/user.controller";
+const UserController = require('./controllers/user.controller');
 
 const routerFactory = router => {
-    createRoute(router, '/user', UserController);
+    router.get('/user', new UserController().getUsers);
 };
 
-export default routerFactory;
+module.exports = routerFactory;

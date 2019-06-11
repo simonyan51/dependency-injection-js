@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+const fs = require('fs');
 
 const readFile = (path) => {
     return new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ const readdir = (path) => {
 
 const readdirSync = path => fs.readdirSync(path);
 
-export {
+module.exports = {
     readFile,
     readdir,
     readdirSync

@@ -1,5 +1,5 @@
-import { Inject } from "../core/utils/decorators";
-import { DB_CONTEXT } from "../helpers/tokens";
+const { Inject } = require('../core/utils/decorators');
+const { DB_CONTEXT } = require('../helpers/tokens');
 
 @Inject(DB_CONTEXT)
 class BaseRepository {
@@ -8,4 +8,4 @@ class BaseRepository {
     }
 }
 
-export default BaseRepository;
+module.exports = BaseRepository;

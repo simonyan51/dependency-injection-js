@@ -1,4 +1,4 @@
-import Injector from './injector';
+const Injector = require('./injector');
 
 const Injectable = (isTransient) => target => Injector.registerInjection(target.name, target, isTransient);
 const Inject = (...args) => target => (...constructorParams) => {
@@ -6,7 +6,7 @@ const Inject = (...args) => target => (...constructorParams) => {
     return new constructor(...constructorParams);
 };
 
-export {
+module.exports = {
     Injectable,
     Inject,
 };

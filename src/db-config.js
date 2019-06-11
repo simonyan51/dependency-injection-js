@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
-import { readdir } from "./core/utils/fs";
-import { getNameFromFileName } from "./helpers/utils";
+const Sequelize = require('sequelize');
+const { readdir } = require('./core/utils/fs');
+const { getNameFromFileName } = require('./helpers/utils');
 
 const initDB = (
     database,
@@ -24,4 +24,4 @@ const initDB = (
         .then(() => db);
 };
 
-export default initDB;
+module.exports = initDB;

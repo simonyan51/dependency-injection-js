@@ -81,4 +81,4 @@ class Injector {
 
 const injector = new Injector();
 
-export default injector;
+module.exports = injector;

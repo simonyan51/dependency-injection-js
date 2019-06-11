@@ -5,21 +5,20 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "start-node": "webpack && node dist/bundle.js"
+    "babel-node": "babel-node --presets=latest",
+    "start-node": "nodemon --exec npm run babel-node -- ./src/index.js",
+    "build": "babel src -d dist"
   },
   "author": "simonyan51",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/plugin-proposal-class-properties": "^7.2.1",
-    "@babel/plugin-proposal-decorators": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.2.0",
-    "@babel/preset-stage-0": "^7.0.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.0.4",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "clean-webpack-plugin": "^1.0.0",
+    "nodemon": "^1.19.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
   },
@@ -32,5 +31,13 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.42.0",
     "webpack-node-externals": "^1.7.2"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ],
+    "plugins": [
+      "transform-decorators"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import * as express from 'express';
+const express = require('express');
 
 const BaseRoute = baseUrl => target => {
     const innerRouter = express.Router();
@@ -29,7 +29,7 @@ const Delete = url => (target, key, descriptor) => {
     return descriptor;
 }
 
-export {
+module.exports = {
     Get,
     Post,
     Put,

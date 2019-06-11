@@ -20,4 +20,4 @@ const users = (sequelize, dataTypes) => sequelize.define('users', {
     }
 });
 
-export default users;
+module.exports = users;
