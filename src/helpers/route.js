@@ -35,4 +35,5 @@ module.exports = {
     Put,
     Delete,
     createRoute,
+    BaseRoute,
 };
